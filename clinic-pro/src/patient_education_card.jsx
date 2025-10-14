@@ -1,5 +1,5 @@
 import React from 'react';
-
+import captureImg from "./assets/Capture.PNG";
 export default function PatientEducationCard() {
   return (
     <div className="flex flex-col justify-center items-center p-[14px_19px] gap-[10px] w-[750px] h-[245px] bg-white shadow-md rounded-[10px]">
@@ -20,7 +20,7 @@ export default function PatientEducationCard() {
         {/* Illustration */}
         <div className="mt-[10px]">
           <img
-            src="/path/to/range-of-motion-restoration.png"
+            src={captureImg}
             alt="Range of Motion Restoration"
             className="w-[318px] h-[153px] object-contain"
           />
