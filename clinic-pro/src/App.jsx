@@ -1,187 +1,218 @@
 import React from "react";
-import { HashRouter, Routes, Route, Navigate, Link } from "react-router-dom";
+import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 
-// Inline SVG icons to avoid dependency issues
-const Svg = ({ children, className }) => (
+const Svg = ({ children, className, strokeWidth = 1.8, stroke = "currentColor", fill = "none" }) => (
   <svg
     className={className}
     viewBox="0 0 24 24"
-    fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    stroke="currentColor"
-    strokeWidth="2"
+    stroke={stroke}
+    strokeWidth={strokeWidth}
     strokeLinecap="round"
     strokeLinejoin="round"
+    fill={fill}
   >
     {children}
   </svg>
 );
 
 const Icons = {
-  LayoutDashboard: (p) => (
+  Logo: (p) => (
     <Svg {...p}>
-      <rect x="3" y="3" width="7" height="7" rx="1" />
-      <rect x="14" y="3" width="7" height="4" rx="1" />
-      <rect x="14" y="9" width="7" height="12" rx="1" />
-      <rect x="3" y="12" width="7" height="9" rx="1" />
+      <path d="M4.5 7.5A3.5 3.5 0 0 1 8 4h8a3.5 3.5 0 0 1 3.5 3.5v9A3.5 3.5 0 0 1 16 20H8a3.5 3.5 0 0 1-3.5-3.5v-9Z" />
+      <path d="M12 8v8" />
+      <path d="M8.5 12H15" />
     </Svg>
   ),
-  Pencil: (p) => (
+  Home: (p) => (
     <Svg {...p}>
-      <path d="M12 20h9" />
-      <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5Z" />
-    </Svg>
-  ),
-  CreditCard: (p) => (
-    <Svg {...p}>
-      <rect x="2" y="4" width="20" height="16" rx="2" />
-      <path d="M2 10h20" />
-    </Svg>
-  ),
-  ClipboardHeart: (p) => (
-    <Svg {...p}>
-      <rect x="4" y="4" width="16" height="18" rx="2" />
-      <path d="M9 4V2h6v2" />
-      <path d="M12 14s-3-2-3-4a2 2 0 0 1 4 0 2 2 0 0 1 4 0c0 2-3 4-3 4Z" />
+      <path d="m3.5 11.5 8.5-7 8.5 7" />
+      <path d="M6.5 10.5v9h5v-5.5h2v5.5h5v-9" />
     </Svg>
   ),
   Calendar: (p) => (
     <Svg {...p}>
-      <rect x="3" y="4" width="18" height="18" rx="2" />
-      <path d="M16 2v4" />
-      <path d="M8 2v4" />
-      <path d="M3 10h18" />
-      <path d="m9 14 2 2 4-4" />
+      <rect x="4" y="4.5" width="16" height="15.5" rx="2" />
+      <path d="M16 3v3" />
+      <path d="M8 3v3" />
+      <path d="M4 10h16" />
+      <path d="m10 15 2 2 4-4" />
     </Svg>
   ),
   Folder: (p) => (
     <Svg {...p}>
-      <path d="M3 7a2 2 0 0 1 2-2h5l2 2h9a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" />
+      <path d="M3.5 7.5A2.5 2.5 0 0 1 6 5h5l2 2h7a2.5 2.5 0 0 1 2.5 2.5v8A2.5 2.5 0 0 1 20 20H6A2.5 2.5 0 0 1 3.5 17.5v-10Z" />
     </Svg>
   ),
   Message: (p) => (
     <Svg {...p}>
-      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8.5Z" />
+      <path d="M20.5 12a8.5 8.5 0 0 0-8.5-8.5h-1A8.5 8.5 0 0 0 2.5 12a8.5 8.5 0 0 0 2.2 5.7l-.7 4.3 4.1-1.2a8.5 8.5 0 0 0 4.9 1.5 8.5 8.5 0 0 0 7.5-4.6A8.5 8.5 0 0 0 20.5 12Z" />
     </Svg>
   ),
-  Refresh: (p) => (
+  CreditCard: (p) => (
     <Svg {...p}>
-      <path d="M21 12a9 9 0 0 0-9-9" />
-      <path d="m3 12 3 3 3-3" />
-      <path d="M12 21a9 9 0 0 0 9-9" />
-      <path d="M3 12a9 9 0 0 1 9-9v3" />
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="M3 10.5h18" />
+      <path d="M7 15h3" />
     </Svg>
   ),
-  ArrowRight: (p) => (
+  Money: (p) => (
     <Svg {...p}>
-      <path d="m9 18 6-6-6-6" />
+      <rect x="3" y="6" width="18" height="12" rx="3" />
+      <path d="M12 9.5a2.5 2.5 0 1 0 0 5" />
+      <path d="M12 14.5a2.5 2.5 0 1 0 0-5" />
+    </Svg>
+  ),
+  Pencil: (p) => (
+    <Svg {...p}>
+      <path d="M12 19h9" />
+      <path d="m14.5 4 3.5 3.5L8 17l-5 1 1-5L14.5 4Z" />
+    </Svg>
+  ),
+  Logout: (p) => (
+    <Svg {...p}>
+      <path d="M16 17.5 21.5 12 16 6.5" />
+      <path d="M21.5 12H10" />
+      <path d="M12 19H6a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3h6" />
+    </Svg>
+  ),
+  ChevronRight: (p) => (
+    <Svg {...p}>
+      <path d="m9.5 18 5-6-5-6" />
+    </Svg>
+  ),
+  Fire: (p) => (
+    <Svg {...p}>
+      <path d="M12 4c1 2 4 3.5 4 7a4 4 0 1 1-8 0c0-1.5.7-2.8 1.7-3.9" />
+      <path d="M12 12.5a1.5 1.5 0 1 1-2.6-1.1" />
+    </Svg>
+  ),
+  Dot: (p) => (
+    <Svg {...p} stroke="none">
+      <circle cx="12" cy="12" r="6" fill="currentColor" />
+    </Svg>
+  ),
+  Check: (p) => (
+    <Svg {...p}>
+      <path d="m6.5 12 4 4 6.5-7.5" />
+    </Svg>
+  ),
+  ClipboardHeart: (p) => (
+    <Svg {...p}>
+      <rect x="5" y="4" width="14" height="17" rx="2.5" />
+      <path d="M9 4V3h6v1" />
+      <path d="M12 14.5s-2.5-1.7-2.5-3.5a1.75 1.75 0 0 1 3.5 0 1.75 1.75 0 0 1 3.5 0c0 1.8-2.5 3.5-2.5 3.5Z" />
     </Svg>
   ),
 };
 
 const navItems = [
-  { id: "dashboard", icon: Icons.LayoutDashboard, label: "Dashboard", active: true },
-  { id: "calendar", icon: Icons.Calendar, label: "Calendar" },
-  { id: "records", icon: Icons.Folder, label: "Records" },
-  { id: "messages", icon: Icons.Message, label: "Messages" },
-  { id: "billing", icon: Icons.CreditCard, label: "Billing" },
+  { id: "home", label: "Home", icon: Icons.Home, active: true },
+  { id: "calendar", label: "Calendar", icon: Icons.Calendar },
+  { id: "records", label: "Records", icon: Icons.Folder },
+  { id: "messages", label: "Messages", icon: Icons.Message },
+  { id: "billing", label: "Billing", icon: Icons.CreditCard },
 ];
+
+const infoFields = [
+  { label: "Phone:", value: "(555) 555-5555" },
+  { label: "Email:", value: "wimtachclient@hotmail.com" },
+  { label: "Injury Location:", value: "Right" },
+  {
+    label: "Diagnosis:",
+    value: "Other specified malignant neoplasm of skin, unspecified - C4499",
+  },
+];
+
+const statsDots = ["past", "past", "current", "upcoming", "upcoming", "upcoming", "upcoming"];
+
+const statsDays = ["Wed", "Thu", "Fri", "Sat", "Sun", "Mon", "Today"];
 
 function Sidebar() {
   return (
-    <aside className="sidebar">
-      <div className="sidebar__logo" aria-label="Clinic Pro">
-        <Icons.LayoutDashboard className="sidebar__logo-icon" />
+    <aside className="sidebar" aria-label="Primary navigation">
+      <div className="sidebar__logo" aria-hidden="true">
+        <Icons.Logo className="sidebar__logo-icon" />
       </div>
-      <nav className="sidebar__nav" aria-label="Primary">
+      <nav className="sidebar__nav">
         {navItems.map((item) => {
           const Icon = item.icon;
           return (
-            <Link
+            <button
               key={item.id}
-              to="#"
+              type="button"
               className={`sidebar__link${item.active ? " is-active" : ""}`}
               aria-label={item.label}
             >
               <Icon className="sidebar__icon" />
-            </Link>
+            </button>
           );
         })}
       </nav>
-      <button type="button" className="sidebar__support" aria-label="Support">
-        <Icons.Refresh className="sidebar__support-icon" />
+      <button type="button" className="sidebar__logout" aria-label="Log out">
+        <Icons.Logout className="sidebar__icon" />
       </button>
     </aside>
   );
 }
 
-function InfoCardHeader() {
-  // Static contact details mirrored from provided mockup.
-  const info = [
-    { label: "Phone", value: "(555) 555-5555" },
-    { label: "Email", value: "wimtachclient@hotmail.com" },
-    { label: "Injury Location", value: "Right" },
-    { label: "Diagnosis", value: "Other specified malignant neoplasm of skin, unspecified - C4499" },
-  ];
-
+function InfoSummary() {
   return (
-    <div className="info-card">
-      <div className="info-card__grid">
-        {info.map((item) => (
-          <div key={item.label} className="info-card__item">
-            <span className="info-card__label">{item.label}</span>
-            <span className="info-card__value">{item.value}</span>
+    <div className="info-summary">
+      <button type="button" className="info-summary__edit" aria-label="Edit contact details">
+        <Icons.Pencil className="info-summary__edit-icon" />
+      </button>
+      <dl className="info-summary__grid">
+        {infoFields.map((field) => (
+          <div key={field.label} className="info-summary__item">
+            <dt>{field.label}</dt>
+            <dd>{field.value}</dd>
           </div>
         ))}
-      </div>
-      <button type="button" className="info-card__edit" aria-label="Edit contact details">
-        <Icons.Pencil className="sidebar__icon" />
-      </button>
+      </dl>
     </div>
   );
 }
 
-function TopPanel() {
+function HeaderCard() {
   return (
-    <div className="top-panel">
+    <section className="header-card">
       <span className="breadcrumb">Dashboard / Wimtach Client</span>
-      <div className="top-panel__row">
-        <div className="profile">
-          <div className="profile__avatar">WI</div>
-          <div>
-            <h1 className="profile__name">Wimtach Client</h1>
-            <p className="profile__meta">Last Active: Mar 20, 2019 23:14</p>
+      <div className="header-card__content">
+        <div className="identity">
+          <div className="identity__avatar">WI</div>
+          <div className="identity__details">
+            <h1>Wimtach Client</h1>
+            <p>Last Active: Mar 20, 2019 23:14</p>
           </div>
-          <button type="button" className="profile__cta">Discharge Patient</button>
+          <button type="button" className="identity__cta">Discharge Patient</button>
         </div>
-        <InfoCardHeader />
+        <InfoSummary />
       </div>
-    </div>
+    </section>
   );
 }
 
-function HEPSummaryCard() {
+function HEPCard() {
   return (
-    <section className="card">
-      <div className="hep-card__inner">
-        <div className="hep-card__main">
-          <div className="hep-card__title">
-            <h2>New HEP for Wimtach Client</h2>
-            <span className="hep-card__subtitle">Edited 16 hours ago</span>
+    <section className="card hep-card">
+      <div className="hep-card__badge">Edit HEP</div>
+      <div className="hep-card__body">
+        <header className="hep-card__header">
+          <h2>New HEP for Wimtach Client</h2>
+          <span>Edited 16 hours ago</span>
+        </header>
+        <div className="hep-card__metrics">
+          <div className="hep-card__metric">
+            <span>Sessions per Day</span>
+            <strong>5</strong>
           </div>
-          <div className="hep-card__metrics">
-            <div className="metric-card">
-              <span>Sessions per Day</span>
-              <strong>5</strong>
-            </div>
-            <div className="metric-card">
-              <span>Total Reps</span>
-              <strong>254</strong>
-            </div>
+          <div className="hep-card__metric">
+            <span>Total Reps</span>
+            <strong>254</strong>
           </div>
         </div>
-        <button type="button" className="hep-card__cta">Edit HEP</button>
       </div>
     </section>
   );
@@ -189,39 +220,61 @@ function HEPSummaryCard() {
 
 function StatsCard() {
   return (
-    <section className="card">
-      <div className="stats-card__inner">
-        <div className="stats-card__main">
-          <div className="stats-card__top">
-            <h3 className="stats-card__title">Stats for Period 3</h3>
-            <div className="stats-card__streak">
-              <span role="img" aria-label="Fire">
-                🔥
-              </span>
-              Streaks 1
-            </div>
+    <section className="card stats-card">
+      <div className="stats-card__panel">
+        <header className="stats-card__header">
+          <div className="stats-card__heading">
+            <h3>Stats</h3>
+            <span>for Period 3</span>
           </div>
-          <div className="stats-card__dots">
-            {Array.from({ length: 7 }).map((_, index) => (
-              <div
-                key={index}
-                className={`stats-card__dot${index === 4 ? " is-active" : ""}`}
-              />
-            ))}
+          <div className="stats-card__streak">
+            <span>Streaks</span>
+            <strong>1</strong>
+            <Icons.Fire className="stats-card__streak-icon" />
           </div>
-          <div className="stats-card__footer">
-            <div>
-              Weeks Enrolled
-              <strong>9</strong>
-            </div>
-            <div>
-              Compliance
-              <strong>16/30</strong>
-            </div>
+        </header>
+        <div className="stats-card__activity">
+          {statsDots.map((state, index) => (
+            <span
+              key={index}
+              className={`stats-card__activity-dot stats-card__activity-dot--${state}`}
+              aria-hidden="true"
+            />
+          ))}
+        </div>
+        <div className="stats-card__days">
+          {statsDays.map((day, index) => (
+            <span key={day} className={`stats-card__day stats-card__day--${statsDots[index]}`}>
+              {day}
+            </span>
+          ))}
+        </div>
+        <div className="stats-card__metrics">
+          <div>
+            Weeks Enrolled
+            <strong>9</strong>
+          </div>
+          <div>
+            Compliance
+            <strong>16/30</strong>
           </div>
         </div>
-        <button type="button" className="stats-card__cta">View Stats</button>
       </div>
+      <button type="button" className="stats-card__cta-panel">
+        View Stats
+      </button>
+    </section>
+  );
+}
+
+function PatientEducation() {
+  return (
+    <section className="card education-card">
+      <header>
+        <h3>Patient Education</h3>
+        <p>Coming soon</p>
+      </header>
+      <div className="education-card__media" role="presentation" />
     </section>
   );
 }
@@ -229,58 +282,54 @@ function StatsCard() {
 function BillingCard() {
   return (
     <button type="button" className="billing-card">
-      <span className="billing-card__left">
+      <span className="billing-card__copy">
         <span className="billing-card__icon">
-          <Icons.CreditCard className="sidebar__icon" />
+          <Icons.Money className="billing-card__icon-svg" />
         </span>
         View Billing Details
       </span>
-      <span className="billing-card__chevron">›</span>
+      <Icons.ChevronRight className="billing-card__chevron" />
     </button>
   );
 }
 
-function PatientEducation() {
+function QuickAction() {
   return (
-    <section className="card patient-education">
-      <h3>Patient Education</h3>
-      <p>Coming soon</p>
-      <div className="patient-education__media">
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Map_placeholder.png"
-          alt="Map placeholder"
-        />
-      </div>
-    </section>
+    <button type="button" className="quick-action" aria-label="Open health checker">
+      <Icons.ClipboardHeart className="quick-action__icon" />
+    </button>
   );
 }
 
-function HealthChecker() {
+function BackgroundDecor() {
   return (
-    <button type="button" className="health-checker" aria-label="Open Health Checker">
-      <Icons.ClipboardHeart className="sidebar__icon" />
-    </button>
+    <div className="background-decor" aria-hidden="true">
+      <div className="background-decor__shape background-decor__shape--one" />
+      <div className="background-decor__shape background-decor__shape--two" />
+      <div className="background-decor__shape background-decor__shape--three" />
+    </div>
   );
 }
 
 function PatientPage() {
   return (
-    <div className="patient-page">
+    <div className="patient-layout">
+      <BackgroundDecor />
       <Sidebar />
-      <main className="main-content">
-        <TopPanel />
-        <div className="main-grid">
-          <div className="stack">
-            <HEPSummaryCard />
+      <main className="page-body">
+        <HeaderCard />
+        <section className="content-grid">
+          <div className="content-column">
+            <HEPCard />
             <PatientEducation />
           </div>
-          <div className="stack">
+          <div className="content-column">
             <StatsCard />
             <BillingCard />
           </div>
-        </div>
+        </section>
       </main>
-      <HealthChecker />
+      <QuickAction />
     </div>
   );
 }
