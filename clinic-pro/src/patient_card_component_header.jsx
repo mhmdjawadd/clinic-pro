@@ -1,5 +1,6 @@
 import React from "react";
-import { Pencil } from "lucide-react";
+import { FaPencilAlt } from "react-icons/fa";
+
 
 export default function PatientCard() {
   return (
@@ -75,7 +76,7 @@ export default function PatientCard() {
           {/* Edit Icon - square rounded with soft corners and shadow */}
           <div className="flex items-center justify-center">
             <div className="w-[45px] h-[45px] bg-[#ADB5BD] rounded-[12px] shadow-[0_4px_4px_rgba(0,0,0,0.25)] flex items-center justify-center">
-              <Pencil className="text-white w-[22px] h-[22px]" />
+              <FaPencilAlt className="text-white w-[22px] h-[22px]" />
             </div>
           </div>
         </div>

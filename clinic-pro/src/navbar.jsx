@@ -1,4 +1,4 @@
-import { Home, ChevronLeft, LogOut } from "lucide-react";
+import { FaHome, FaChevronLeft, FaSignOutAlt } from "react-icons/fa";
 
 /**
  * Sidebar (fixed left navbar)
@@ -29,12 +29,12 @@ export default function Sidebar() {
 
         {/* Home icon */}
         <button aria-label="Home" className="h-[30px] w-[30px] flex items-center justify-center">
-          <Home className="h-[26px] w-[26px] text-white" strokeWidth={2} />
+          <FaHome className="h-[26px] w-[26px] text-white" />
         </button>
 
         {/* Chevron icon */}
         <button aria-label="Back" className="h-[30px] w-[30px] flex items-center justify-center">
-          <ChevronLeft className="h-[26px] w-[26px] text-white" strokeWidth={2} />
+          <FaChevronLeft className="h-[26px] w-[26px] text-white" />
         </button>
 
         {/* Vector + Underline combined */}
@@ -63,7 +63,7 @@ export default function Sidebar() {
       {/* Logout icon */}
       <div className="flex flex-col items-center">
         <button aria-label="Logout" className="h-[30px] w-[30px] flex items-center justify-center mb-2">
-          <LogOut className="h-[26px] w-[26px] text-white" strokeWidth={2} />
+          <FaSignOutAlt className="h-[26px] w-[26px] text-white" />
         </button>
       </div>
     </aside>
